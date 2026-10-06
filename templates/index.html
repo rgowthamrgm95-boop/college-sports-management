@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Sports Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #eaf4ff;
+            color: #222;
+        }
+
+        .header {
+            background-color: #222;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 34px;
+        }
+
+        .header p {
+            margin-top: 10px;
+            font-size: 17px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            margin-bottom: 8px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 11px 18px;
+            margin: 5px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+        }
+
+        @media (max-width: 700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>College Sports Management System</h1>
+        <p>Manage Players, Sports, Teams and Matches</p>
+    </div>
+
+    <div class="container">
+
+        <div class="welcome">
+            <h2>Welcome 👋</h2>
+            <p>Select a module to manage college sports activities.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🏃 Player Management</h3>
+                <p>Register and view sports players.</p>
+
+                <p>Total Players: {{ player_count }}</p>
+
+                <a href="/players" class="button">Register Player</a>
+                <a href="/player-list" class="button">View Players</a>
+            </div>
+
+            <div class="card">
+                <h3>🏆 Sports Management</h3>
+                <p>Add and view available sports.</p>
+
+                <p>Total Sports: {{ sport_count }}</p>
+
+                <a href="/sports" class="button">Add Sport</a>
+                <a href="/sports-list" class="button">View Sports</a>
+            </div>
+
+            <div class="card">
+                <h3>👥 Team Management</h3>
+                <p>Create and view sports teams.</p>
+
+                <p>Total Teams: {{ team_count }}</p>
+
+                <a href="/teams" class="button">Add Team</a>
+                <a href="/teams-list" class="button">View Teams</a>
+            </div>
+
+            <div class="card">
+                <h3>⚽ Match Management</h3>
+                <p>Schedule and view sports matches.</p>
+                
+                <p>Total Matches: {{ match_count }}</p>
+
+                <a href="/matches" class="button">Add Match</a>
+                <a href="/matches-list" class="button">View Matches</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>College Sports Management System © 2026</p>
+    </div>
+
+</body>
+</html>
