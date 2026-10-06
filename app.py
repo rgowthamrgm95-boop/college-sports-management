@@ -440,6 +440,7 @@ def delete_match(id):
     return "Match Deleted Successfully! <br><br><a href='/matches-list'>Back to Matches List</a>"
     
 
+create_database()
+
 if __name__ == "__main__":
-    create_database()
     app.run(debug=True)
