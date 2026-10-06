@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matches List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf4ff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+            min-width: 800px;
+        }
+
+        th {
+            background-color: #d9eaff;
+            font-size: 17px;
+        }
+
+        th, td {
+            border: 1px solid #777;
+            padding: 12px 18px;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 8px 5px;
+            font-size: 16px;
+            border: 1px solid #777;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Registered Matches</h1>
+
+    {% if matches %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Sport Name</th>
+            <th>Team 1</th>
+            <th>Team 2</th>
+            <th>Match Date</th>
+            <th>Venue</th>
+            <th>Action</th>
+        </tr>
+
+        {% for match in matches %}
+        <tr>
+            <td>{{ match[0] }}</td>
+            <td>{{ match[1] }}</td>
+            <td>{{ match[2] }}</td>
+            <td>{{ match[3] }}</td>
+            <td>{{ match[4] }}</td>
+            <td>{{ match[5] }}</td>
+            <td>{{ match[5] }}</td>
+            <td>
+                <a href="/edit-match/{{ match[0] }}">Edit</a>
+                |
+                <a href="/delete-match/{{ match[0] }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No matches registered yet.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/matches">
+        <button type="button">Add Match</button>
+    </a>
+
+    <a href="/">
+        <button type="button">Back to Home</button>
+    </a>
+
+</body>
+</html>

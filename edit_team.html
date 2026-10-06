@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Team</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf4ff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        form {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 10px 5px;
+            font-size: 16px;
+            border: 1px solid #777;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Edit Team</h1>
+
+    <form method="POST" action="/update-team/{{ team[0] }}">
+
+        <input type="text"
+               name="team_name"
+               value="{{ team[1] }}"
+               required>
+
+        <input type="text"
+               name="sport_name"
+               value="{{ team[2] }}"
+               required>
+
+        <input type="text"
+               name="captain_name"
+               value="{{ team[3] }}"
+               required>
+
+        <input type="number"
+               name="players_count"
+               value="{{ team[4] }}"
+               required>
+
+        <br>
+
+        <button type="submit">Update Team</button>
+
+        <a href="/teams-list">
+            <button type="button">Cancel</button>
+        </a>
+
+    </form>
+
+</body>
+</html>

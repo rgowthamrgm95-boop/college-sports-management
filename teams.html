@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team Management</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf4ff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+        }
+
+        form {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 10px 5px;
+            font-size: 16px;
+            border: 1px solid #777;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>College Sports Management System</h1>
+
+    <h2>Team Management</h2>
+
+    <form method="POST" action="/add-team">
+
+        <label>Team Name</label><br>
+        <input type="text"
+               name="team_name"
+               placeholder="Enter team name"
+               required>
+
+        <br>
+
+        <label>Sport Name</label><br>
+        <input type="text"
+               name="sport_name"
+               placeholder="Enter sport name"
+               required>
+
+        <br>
+
+        <label>Captain Name</label><br>
+        <input type="text"
+               name="captain_name"
+               placeholder="Enter captain name"
+               required>
+
+        <br>
+
+        <label>Number of Players</label><br>
+        <input type="number"
+               name="players_count"
+               placeholder="Enter number of players"
+               required>
+
+        <br>
+
+        <button type="submit">Add Team</button>
+
+    </form>
+
+    <br>
+
+    <a href="/">
+        <button type="button">Back to Home</button>
+    </a>
+
+</body>
+</html>

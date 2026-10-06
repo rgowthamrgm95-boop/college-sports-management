@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Match</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf4ff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        form {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 10px 5px;
+            font-size: 16px;
+            border: 1px solid #777;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Edit Match</h1>
+
+    <form method="POST" action="/update-match/{{ match[0] }}">
+
+        <input type="text"
+               name="sport_name"
+               value="{{ match[1] }}"
+               required>
+
+        <input type="text"
+               name="team1"
+               value="{{ match[2] }}"
+               required>
+
+        <input type="text"
+               name="team2"
+               value="{{ match[3] }}"
+               required>
+
+        <input type="date"
+               name="match_date"
+               value="{{ match[4] }}"
+               required>
+
+        <input type="text"
+               name="venue"
+               value="{{ match[5] }}"
+               required>
+
+        <br>
+
+        <button type="submit">Update Match</button>
+
+        <a href="/matches-list">
+            <button type="button">Cancel</button>
+        </a>
+
+    </form>
+
+</body>
+</html>

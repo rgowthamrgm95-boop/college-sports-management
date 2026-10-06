@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sports List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf4ff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+            min-width: 600px;
+        }
+
+        th {
+            background-color: #d9eaff;
+            font-size: 17px;
+        }
+
+        th, td {
+            border: 1px solid #777;
+            padding: 12px 18px;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 8px 5px;
+            font-size: 16px;
+            border: 1px solid #777;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Registered Sports</h1>
+
+    {% if sports %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Sport Name</th>
+            <th>Coach Name</th>
+            <th>Players Count</th>
+            <th>Action</th>
+        </tr>
+
+        {% for sport in sports %}
+        <tr>
+            <td>{{ sport[0] }}</td>
+            <td>{{ sport[1] }}</td>
+            <td>{{ sport[2] }}</td>
+            <td>{{ sport[3] }}</td>
+            <td>
+                <a href="/edit-sport/{{ sport[0] }}">Edit</a>
+                |
+                <a href="/delete-sport/{{ sport[0] }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No sports registered yet.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/sports">
+        <button type="button">Add Sport</button>
+    </a>
+
+    <a href="/">
+        <button type="button">Back to Home</button>
+    </a>
+
+</body>
+</html>
