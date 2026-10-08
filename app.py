@@ -6,12 +6,12 @@ app = Flask(__name__, template_folder=".")
 
 
 def create_database():
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS players (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             player_name TEXT NOT NULL,
             register_number TEXT NOT NULL,
             department TEXT NOT NULL,
@@ -22,7 +22,7 @@ def create_database():
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS sports (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             sport_name TEXT NOT NULL,
             coach_name TEXT NOT NULL,
             players_count INTEGER NOT NULL
@@ -31,7 +31,7 @@ def create_database():
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS teams (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             team_name TEXT NOT NULL,
             sport_name TEXT NOT NULL,
             captain_name TEXT NOT NULL,
@@ -41,7 +41,7 @@ def create_database():
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS matches (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             sport_name TEXT NOT NULL,
             team1 TEXT NOT NULL,
             team2 TEXT NOT NULL,
