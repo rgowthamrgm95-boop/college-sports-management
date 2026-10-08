@@ -56,7 +56,7 @@ def create_database():
 
 @app.route("/")
 def home():
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT COUNT(*) FROM players")
@@ -97,7 +97,7 @@ def register():
     year = request.form["year"]
     sport = request.form["sport"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -114,7 +114,7 @@ def register():
 
 @app.route("/player-list")
 def player_list():
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM players")
@@ -126,7 +126,7 @@ def player_list():
 
 @app.route("/delete-player/<int:player_id>")
 def delete_player(player_id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM players WHERE id = ?", (player_id,))
@@ -141,7 +141,7 @@ def delete_player(player_id):
 
 @app.route("/edit-player/<int:id>")
 def edit_player(id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM players WHERE id = ?", (id,))
@@ -159,7 +159,7 @@ def update_player(id):
     year = request.form["year"]
     sport = request.form["sport"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -189,7 +189,7 @@ def add_sport():
     coach_name = request.form["coach_name"]
     players_count = request.form["players_count"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -206,7 +206,7 @@ def add_sport():
 
 @app.route("/sports-list")
 def sports_list():
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM sports")
@@ -218,7 +218,7 @@ def sports_list():
 
 @app.route("/edit-sport/<int:id>")
 def edit_sport(id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM sports WHERE id = ?", (id,))
@@ -234,7 +234,7 @@ def update_sport(id):
     coach_name = request.form["coach_name"]
     players_count = request.form["players_count"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -252,7 +252,7 @@ def update_sport(id):
 
 @app.route("/delete-sport/<int:id>")
 def delete_sport(id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM sports WHERE id = ?", (id,))
@@ -275,7 +275,7 @@ def add_team():
     captain_name = request.form["captain_name"]
     players_count = request.form["players_count"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -292,7 +292,7 @@ def add_team():
 
 @app.route("/teams-list")
 def teams_list():
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM teams")
@@ -304,7 +304,7 @@ def teams_list():
 
 @app.route("/edit-team/<int:id>")
 def edit_team(id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM teams WHERE id = ?", (id,))
@@ -321,7 +321,7 @@ def update_team(id):
     captain_name = request.form["captain_name"]
     players_count = request.form["players_count"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -341,7 +341,7 @@ def update_team(id):
 
 @app.route("/delete-team/<int:id>")
 def delete_team(id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM teams WHERE id = ?", (id,))
@@ -358,7 +358,7 @@ def matches():
 
 @app.route("/matches-list")
 def matches_list():
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM matches")
@@ -376,7 +376,7 @@ def add_match():
     match_date = request.form["match_date"]
     venue = request.form["venue"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -392,7 +392,7 @@ def add_match():
 
 @app.route("/edit-match/<int:id>")
 def edit_match(id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM matches WHERE id = ?", (id,))
@@ -410,7 +410,7 @@ def update_match(id):
     match_date = request.form["match_date"]
     venue = request.form["venue"]
 
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -430,7 +430,7 @@ def update_match(id):
 
 @app.route("/delete-match/<int:id>")
 def delete_match(id):
-    conn = sqlite3.connect("sports.db")
+    conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM matches WHERE id = ?", (id,))
