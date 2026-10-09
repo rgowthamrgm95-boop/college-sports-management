@@ -103,7 +103,7 @@ def register():
     cursor.execute("""
         INSERT INTO players
         (player_name, register_number, department, year, sport)
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s)
     """, (player_name, register_number, department, year, sport))
 
     conn.commit()
@@ -129,7 +129,7 @@ def delete_player(player_id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("DELETE FROM players WHERE id = ?", (player_id,))
+    cursor.execute("DELETE FROM players WHERE id = %s", (player_id,))
     conn.commit()
 
     cursor.execute("SELECT * FROM players")
@@ -144,7 +144,7 @@ def edit_player(id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM players WHERE id = ?", (id,))
+    cursor.execute("SELECT * FROM players WHERE id = %s", (id,))
     player = cursor.fetchone()
 
     conn.close()
@@ -164,12 +164,12 @@ def update_player(id):
 
     cursor.execute("""
         UPDATE players
-        SET player_name = ?,
-            register_number = ?,
-            department = ?,
-            year = ?,
-            sport = ?
-        WHERE id = ?
+        SET player_name = %s,
+            register_number = %s,
+            department = %s,
+            year = %s
+            sport = %s
+        WHERE id = %s
     """, (player_name, register_number, department, year, sport, id))
 
     conn.commit()
@@ -195,7 +195,7 @@ def add_sport():
     cursor.execute("""
         INSERT INTO sports
         (sport_name, coach_name, players_count)
-        VALUES (?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s)
     """, (sport_name, coach_name, players_count))
 
     conn.commit()
@@ -221,7 +221,7 @@ def edit_sport(id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM sports WHERE id = ?", (id,))
+    cursor.execute("SELECT * FROM sports WHERE id = %s", (id,))
     sport = cursor.fetchone()
 
     conn.close()
@@ -239,10 +239,10 @@ def update_sport(id):
 
     cursor.execute("""
         UPDATE sports
-        SET sport_name = ?,
-            coach_name = ?,
-            players_count = ?
-        WHERE id = ?
+        SET sport_name = %s,
+            coach_name = %s,
+            players_count = %s,
+        WHERE id = %s
     """, (sport_name, coach_name, players_count, id))
 
     conn.commit()
@@ -255,7 +255,7 @@ def delete_sport(id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("DELETE FROM sports WHERE id = ?", (id,))
+    cursor.execute("DELETE FROM sports WHERE id = %s", (id,))
 
     conn.commit()
     conn.close()
@@ -281,7 +281,7 @@ def add_team():
     cursor.execute("""
         INSERT INTO teams
         (team_name, sport_name, captain_name, players_count)
-        VALUES (?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s)
     """, (team_name, sport_name, captain_name, players_count))
 
     conn.commit()
@@ -307,7 +307,7 @@ def edit_team(id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM teams WHERE id = ?", (id,))
+    cursor.execute("SELECT * FROM teams WHERE id = %s", (id,))
     team = cursor.fetchone()
 
     conn.close()
@@ -326,11 +326,11 @@ def update_team(id):
 
     cursor.execute("""
         UPDATE teams
-        SET team_name = ?,
-            sport_name = ?,
-            captain_name = ?,
-            players_count = ?
-        WHERE id = ?
+        SET team_name = %s,
+            sport_name = %s,
+            captain_name = %s,
+            players_count = %s
+        WHERE id = %s
     """, (team_name, sport_name, captain_name, players_count, id))
 
     conn.commit()
@@ -344,7 +344,7 @@ def delete_team(id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("DELETE FROM teams WHERE id = ?", (id,))
+    cursor.execute("DELETE FROM teams WHERE id = %s", (id,))
 
     conn.commit()
     conn.close()
@@ -382,7 +382,7 @@ def add_match():
     cursor.execute("""
         INSERT INTO matches
         (sport_name, team1, team2, match_date, venue)
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s)
     """, (sport_name, team1, team2, match_date, venue))
 
     conn.commit()
@@ -395,7 +395,7 @@ def edit_match(id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM matches WHERE id = ?", (id,))
+    cursor.execute("SELECT * FROM matches WHERE id = %s", (id,))
     match = cursor.fetchone()
 
     conn.close()
@@ -415,12 +415,12 @@ def update_match(id):
 
     cursor.execute("""
         UPDATE matches
-        SET sport_name = ?,
-            team1 = ?,
-            team2 = ?,
-            match_date = ?,
-            venue = ?
-        WHERE id = ?
+        SET sport_name = %s,
+            team1 = %s,
+            team2 = %s,
+            match_date = %s,
+            venue = %s
+        WHERE id = %s
     """, (sport_name, team1, team2, match_date, venue, id))
 
     conn.commit()
@@ -433,7 +433,7 @@ def delete_match(id):
     conn = psycopg.connect(os.environ["DATABASE_URL"])
     cursor = conn.cursor()
 
-    cursor.execute("DELETE FROM matches WHERE id = ?", (id,))
+    cursor.execute("DELETE FROM matches WHERE id = %s", (id,))
 
     conn.commit()
     conn.close()
